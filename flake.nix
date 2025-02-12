@@ -47,6 +47,16 @@
             "pkg-config"
           ];
         };
+        python = mkWelcomeText {
+          path = ./python;
+          name = "Python Template";
+          description = ''
+            A basic python project
+          '';
+          buildTools = [
+            "python313"
+          ];
+        };
       };
     };
 }
