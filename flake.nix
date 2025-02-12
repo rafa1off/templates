@@ -39,7 +39,7 @@
           name = "C Template";
           description = ''
             A basic C application template with a package build.
-            To link libraries, put 'exe.linkSystemLibrary("lib")' in the build.zi.
+            To link libraries, put 'exe.linkSystemLibrary("lib")' in the build.zig.
           '';
           buildTools = [
             "zig"
