@@ -34,6 +34,14 @@
     in
     {
       templates = {
+        empty = mkWelcomeText {
+          path = ./empty;
+          name = "Empty Template";
+          description = ''
+            Empty template for custom package building.
+          '';
+          buildTools = null;
+        };
         c = mkWelcomeText {
           path = ./c;
           name = "C Template";
@@ -54,7 +62,7 @@
             A basic python project
           '';
           buildTools = [
-            "python313"
+            "python3"
           ];
         };
       };
