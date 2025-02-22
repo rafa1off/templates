@@ -15,7 +15,7 @@
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = import nixpkgs { system = system; };
+        pkgs = import nixpkgs { inherit system; };
 
         name = "template";
 
