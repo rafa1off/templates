@@ -42,6 +42,18 @@
           '';
           buildTools = null;
         };
+        rust = mkWelcomeText {
+          path = ./rust;
+          name = "Rust Template";
+          description = ''
+            A basic Rust project with fenix for toolchain choice
+          '';
+          buildTools = [
+            "stable toolchain"
+            "pkg-config"
+            "rust-analyzer"
+          ];
+        };
         c = mkWelcomeText {
           path = ./c;
           name = "C Template";
@@ -64,18 +76,6 @@
           buildTools = [
             "pyright"
             "python3"
-          ];
-        };
-        rust = mkWelcomeText {
-          path = ./rust;
-          name = "Rust Template";
-          description = ''
-            A basic Rust project with rust-toolchain.toml for toolchain choice
-          '';
-          buildTools = [
-            "pkg-config"
-            "rust-analyzer"
-            "rustup"
           ];
         };
       };

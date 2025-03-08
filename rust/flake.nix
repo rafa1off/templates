@@ -4,11 +4,16 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+
+    naersk.url = "github:nix-community/naersk";
+    fenix.url = "github:nix-community/fenix";
   };
 
   outputs =
     {
+      fenix,
       flake-utils,
+      naersk,
       nixpkgs,
       self,
     }:
@@ -17,30 +22,39 @@
       let
         pkgs = import nixpkgs {
           inherit system;
+
+          overlays = [ fenix.overlays.default ];
         };
 
         name = "rust-template";
 
-        overrides = (builtins.fromTOML (builtins.readFile (self + "/rust-toolchain.toml")));
+        naersk' = pkgs.callPackage naersk { };
 
         nativeBuildInputs = with pkgs; [
           pkg-config
         ];
 
         buildInputs = with pkgs; [
-          rustup
+          (pkgs.fenix.stable.withComponents [
+            "cargo"
+            "clippy"
+            "rust-src"
+            "rustc"
+            "rustfmt"
+          ])
           rust-analyzer
         ];
       in
       {
+        defaultPackage = naersk'.buildPackage {
+          src = ./.;
+        };
+
         devShells.default = pkgs.mkShell {
           inherit name nativeBuildInputs buildInputs;
 
-          RUSTC_VERSION = overrides.toolchain.channel;
-
           shellHook = ''
             export PATH=$PATH:''${CARGO_HOME:-~/.cargo}/bin
-            export PATH=$PATH:''${RUSTUP_HOME:-~/.rustup}/toolchains/$RUSTC_VERSION-x86_64-unknown-linux-gnu/bin/
           '';
         };
       }
