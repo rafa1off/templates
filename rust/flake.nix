@@ -31,7 +31,7 @@
         naersk' = pkgs.callPackage naersk { };
 
         stable = pkgs.fenix.stable;
-        nightly = pkgs.fenix.minimal;
+        nightly = pkgs.fenix.default;
 
         nativeBuildInputs = with pkgs; [
           pkg-config
