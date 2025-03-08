@@ -43,7 +43,6 @@
             "clippy"
             "rust-src"
             "rustc"
-            "rustfmt"
           ])
           (nightly.withComponents [
             "rustfmt"
