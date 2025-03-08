@@ -50,9 +50,9 @@
             To link libraries, put 'exe.linkSystemLibrary("lib")' in the build.zig.
           '';
           buildTools = [
-            "zig"
             "clang-tools"
             "pkg-config"
+            "zig"
           ];
         };
         python = mkWelcomeText {
@@ -62,8 +62,8 @@
             A basic Python project
           '';
           buildTools = [
-            "python3"
             "pyright"
+            "python3"
           ];
         };
         rust = mkWelcomeText {
@@ -74,8 +74,8 @@
           '';
           buildTools = [
             "pkg-config"
-            "rustup"
             "rust-analyzer"
+            "rustup"
           ];
         };
       };
