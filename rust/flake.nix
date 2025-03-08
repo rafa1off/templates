@@ -30,16 +30,21 @@
 
         naersk' = pkgs.callPackage naersk { };
 
+        stable = pkgs.fenix.stable;
+        nightly = pkgs.fenix.minimal;
+
         nativeBuildInputs = with pkgs; [
           pkg-config
         ];
 
         buildInputs = with pkgs; [
-          (pkgs.fenix.stable.withComponents [
+          (stable.withComponents [
             "cargo"
             "clippy"
             "rust-src"
             "rustc"
+          ])
+          (nightly.withComponents [
             "rustfmt"
           ])
           rust-analyzer
