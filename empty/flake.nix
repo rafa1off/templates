@@ -8,9 +8,9 @@
 
   outputs =
     {
-      self,
-      nixpkgs,
       flake-utils,
+      nixpkgs,
+      self,
     }:
     flake-utils.lib.eachDefaultSystem (
       system:

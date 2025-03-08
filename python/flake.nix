@@ -8,16 +8,16 @@
 
   outputs =
     {
-      self,
-      nixpkgs,
       flake-utils,
+      nixpkgs,
+      self,
     }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = import nixpkgs { inherit system; };
 
-        name = "template";
+        name = "python-template";
 
         python = pkgs.python313;
 

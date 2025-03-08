@@ -8,9 +8,9 @@
 
   outputs =
     {
-      self,
-      nixpkgs,
       flake-utils,
+      nixpkgs,
+      self,
     }:
     flake-utils.lib.eachDefaultSystem (
       system:
@@ -19,7 +19,7 @@
           inherit system;
         };
 
-        name = "template";
+        name = "c-template";
 
         nativeBuildInputs = with pkgs; [
           zig
