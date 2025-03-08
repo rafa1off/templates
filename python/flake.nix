@@ -21,11 +21,12 @@
 
         python = pkgs.python313;
 
-        buildInputs = [
+        buildInputs = with pkgs; [
           (python.withPackages (
             pypkgs: with pypkgs; [
             ]
           ))
+          pyright
         ];
       in
       {

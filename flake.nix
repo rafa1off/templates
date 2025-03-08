@@ -59,10 +59,23 @@
           path = ./python;
           name = "Python Template";
           description = ''
-            A basic python project
+            A basic Python project
           '';
           buildTools = [
             "python3"
+            "pyright"
+          ];
+        };
+        rust = mkWelcomeText {
+          path = ./rust;
+          name = "Rust Template";
+          description = ''
+            A basic Rust project with rust-toolchain.toml for toolchain choice
+          '';
+          buildTools = [
+            "pkg-config"
+            "rustup"
+            "rust-analyzer"
           ];
         };
       };
