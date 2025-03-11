@@ -1,5 +1,5 @@
 {
-  description = "empty template";
+  description = "go template";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -19,6 +19,11 @@
 
         name = "template";
 
+        nativeBuildInputs = with pkgs; [
+          go
+          gopls
+        ];
+
         buildInputs = [ ];
       in
       {
@@ -26,8 +31,19 @@
           inherit
             name
             buildInputs
+            nativeBuildInputs
             ;
         };
+
+        packages.default = pkgs.buildGoModule {
+          pname = name;
+          src = ./.;
+
+          inherit buildInputs;
+
+          vendorHash = null;
+        };
+
       }
     );
 }

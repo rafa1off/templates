@@ -51,16 +51,20 @@
         ];
       in
       {
-        defaultPackage = naersk'.buildPackage {
-          src = ./.;
-        };
-
         devShells.default = pkgs.mkShell {
-          inherit name nativeBuildInputs buildInputs;
+          inherit
+            name
+            nativeBuildInputs
+            buildInputs
+            ;
 
           shellHook = ''
             export PATH=$PATH:''${CARGO_HOME:-~/.cargo}/bin
           '';
+        };
+
+        packages.default = naersk'.buildPackage {
+          src = ./.;
         };
       }
     );

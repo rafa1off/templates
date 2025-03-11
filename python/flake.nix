@@ -21,6 +21,8 @@
 
         python = pkgs.python313;
 
+        nativeBuildInputs = [ python ];
+
         buildInputs = with pkgs; [
           (python.withPackages (
             pypkgs: with pypkgs; [
@@ -30,7 +32,21 @@
         ];
       in
       {
-        devShells.default = pkgs.mkShell { inherit name buildInputs; };
+        devShells.default = pkgs.mkShell {
+          inherit
+            name
+            buildInputs
+            ;
+        };
+
+        packages.default = python.pkgs.buildPythonApplication {
+          pname = name;
+          version = "0.0.0";
+
+          src = ./.;
+
+          inherit nativeBuildInputs buildInputs;
+        };
       }
     );
 }

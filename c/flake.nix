@@ -37,6 +37,14 @@
             buildInputs
             ;
         };
+
+        packages.default = pkgs.stdenv.mkDerivation {
+          pname = name;
+          version = "0.0.0";
+          src = ./.;
+
+          inherit buildInputs nativeBuildInputs;
+        };
       }
     );
 }
